@@ -1,0 +1,87 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="WinAPIDemo.WinStore.MapPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinAPIDemo.WinStore"
+    xmlns:common="using:WinAPIDemo.WinStore.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:vm="using:WinAPIDemo.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:esri="using:Esri.ArcGISRuntime.Controls"
+	xmlns:location="using:Esri.ArcGISRuntime.Location"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+		<vm:MapVM x:Key="mapVM" />
+    </Page.Resources>
+
+    <Grid Style="{StaticResource LayoutRootStyle}"
+		  DataContext="{StaticResource mapVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+			<TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PortalItem.Title}" Style="{StaticResource PageHeaderTextStyle}"/>
+        </Grid>
+
+		<esri:MapView Grid.Row="1"
+				  Map="{Binding WebMapVM.Map}" >
+			<esri:MapView.LocationDisplay>
+				<location:LocationDisplay IsEnabled="True" />
+			</esri:MapView.LocationDisplay>
+		</esri:MapView>
+
+		<StackPanel HorizontalAlignment="Center"
+					  VerticalAlignment="Center"
+					  Grid.Row="1" IsHitTestVisible="False" >
+			<ProgressRing Width="67" Height="67"
+					  Foreground="White"
+					  IsActive="{Binding IsLoadingWebMap}"
+					  />
+			<TextBlock HorizontalAlignment="Center" 
+				   Text="{Binding StatusMessage}"
+					   FontSize="24" Margin="12" />
+		
+		</StackPanel>
+
+		<VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>
