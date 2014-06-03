@@ -18,6 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
 
 			<converters:NullToCollapsedConverter x:Key="nullToCollapsed" />
+			<converters:TimeSpanFormatter x:Key="timeSpanFormatter" />
 			
 			<Style TargetType="TextBlock">
 				<Setter Property="FontSize" Value="16" />

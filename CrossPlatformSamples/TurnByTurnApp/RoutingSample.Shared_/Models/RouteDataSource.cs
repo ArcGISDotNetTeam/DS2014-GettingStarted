@@ -46,12 +46,13 @@ namespace RoutingSample
 			}
 		}
 
+		public Uri ManueverImage { get; private set; }
+
 		public IList<Graphic> Maneuvers { get; private set; }
 
 		public IList<Graphic> RouteLines { get; private set; }
 
 		public string NextManeuver { get; private set; }
-		public MapPoint WaypointLocation { get; private set; }
 
 		public double DistanceToDestination { get; private set; }
 
@@ -114,11 +115,6 @@ namespace RoutingSample
 		/// <param name="location"></param>
 		public void SetCurrentLocation(MapPoint location)
 		{
-			List<string> propertyNames = new List<string>(new string[] {
-						"NextManeuver","WaypointLocation", "SnappedLocation", "CurrentDirection", "TimeToWaypoint", 
-						"DistanceToDestination", "DistanceToWaypoint", "TimeToDestination",
-						"MilesToDestination", "MilesToWaypoint", 
-					});
 			RouteDirection closest = null;
 			double distance = double.NaN;
 			MapPoint snappedLocation = null;
@@ -167,20 +163,18 @@ namespace RoutingSample
 					DistanceToDestination = Math.Round(totallength);
 					SnappedLocation = snappedLocation;
 					var maneuverType = next.ManeuverType;
-					WaypointLocation = new MapPoint(segment.Paths.Last().LastOrDefault(), segment.SpatialReference);
 #if NETFX_CORE || WINDOWS_PHONE
-					var maneuverUri = new Uri(string.Format("ms-appx:///Assets/Maneuvers/{0}.png", maneuverType));
+					ManeuverImage = new Uri(string.Format("ms-appx:///Assets/Maneuvers/{0}.png", maneuverType));
 #else
-					var maneuverUri = new Uri(string.Format("pack://application:,,,/Assets/Maneuvers/{0}.png", maneuverType));
+					ManeuverImage = new Uri(string.Format("pack://application:,,,/Assets/Maneuvers/{0}.png", maneuverType));
 #endif
-					if (ManeuverImage != maneuverUri)
-					{
-						ManeuverImage = maneuverUri;
-						propertyNames.Add("ManeuverImage");
-					}
 					NextManeuver = next.Text;
 
-					RaisePropertiesChanged(propertyNames);
+					RaisePropertiesChanged(new string[] {
+						"NextManeuver","SnappedLocation", "CurrentDirection", "TimeToWaypoint", 
+						"DistanceToDestination", "DistanceToWaypoint", "TimeToDestination",
+						"MilesToDestination", "MilesToWaypoint", "ManeuverImage"
+					});
 				}
 			}
 		}

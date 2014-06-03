@@ -79,6 +79,9 @@
         <Grid x:Name="MapPanel" Grid.Column="1" Grid.Row="1">
             <esri:MapView LocationDisplay="{Binding LocationDisplay}"
 					  local:CommandBinder.RequestView="{Binding ExtentRequested}" >
+				<local:RestoreAutoPanMode.RestoreAutoPanSettings>
+					<local:RestoreAutoPanMode DelayInSeconds="5" PanMode="Navigation" IsEnabled="True" />
+				</local:RestoreAutoPanMode.RestoreAutoPanSettings>
 				<esri:Map>
 					<esri:ArcGISTiledMapServiceLayer
 					ServiceUri="http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer" />

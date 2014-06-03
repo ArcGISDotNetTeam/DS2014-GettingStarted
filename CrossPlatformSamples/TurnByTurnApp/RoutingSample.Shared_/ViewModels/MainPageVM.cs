@@ -181,16 +181,14 @@ namespace RoutingSample.ViewModels
 		{
 			if (e.PropertyName == "CurrentLocation")
 			{
-				if (LocationDisplay.CurrentLocation != null && !LocationDisplay.CurrentLocation.Location.IsEmpty)
+				if (LocationDisplay.CurrentLocation != null)
 				{
 					if (Route != null)
 						Route.SetCurrentLocation(LocationDisplay.CurrentLocation.Location);
 					if (firstLocation)
 					{
-						var accuracy = double.IsNaN(LocationDisplay.CurrentLocation.HorizontalAccuracy) ? 0 :
-							LocationDisplay.CurrentLocation.HorizontalAccuracy;
 						ExtentRequested = GeometryEngine.GeodesicBuffer(LocationDisplay.CurrentLocation.Location, 
-							accuracy + 500, LinearUnits.Meters).Extent;
+							LocationDisplay.CurrentLocation.HorizontalAccuracy + 500, LinearUnits.Meters).Extent;
 						firstLocation = false;
 						if (Route == null && m_routeTaskCancellationToken == null && !string.IsNullOrWhiteSpace(RouteToAddress)) //calculate route now
 							//Calculate a route from the address

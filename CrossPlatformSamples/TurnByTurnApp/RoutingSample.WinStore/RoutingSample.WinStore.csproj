@@ -85,27 +85,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\RoutingSample.Shared\CommandBinder.cs">
-      <Link>CommandBinder.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Converters\NullToCollapsedConverter.cs">
-      <Link>Converters\NullToCollapsedConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Models\ModelBase.cs">
-      <Link>Models\ModelBase.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Models\RouteDataSource.cs">
-      <Link>Models\RouteDataSource.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Models\RouteService.cs">
-      <Link>Models\RouteService.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\RouteLocationSimulator.cs">
-      <Link>RouteLocationSimulator.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\ViewModels\MainPageVM.cs">
-      <Link>ViewModels\MainPageVM.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -121,46 +100,6 @@
     <None Include="RoutingSample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AppSketch.png" />
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\BearLeft.png">
-      <Link>Assets\Maneuvers\BearLeft.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\BearRight.png">
-      <Link>Assets\Maneuvers\BearRight.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\ForkLeft.png">
-      <Link>Assets\Maneuvers\ForkLeft.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\ForkRight.png">
-      <Link>Assets\Maneuvers\ForkRight.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\HighwayMerge.png">
-      <Link>Assets\Maneuvers\HighwayMerge.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\RampLeft.png">
-      <Link>Assets\Maneuvers\RampLeft.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\RampRight.png">
-      <Link>Assets\Maneuvers\RampRight.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\Roundabout .png">
-      <Link>Assets\Maneuvers\Roundabout .png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\Stop.png">
-      <Link>Assets\Maneuvers\Stop.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\Straight.png">
-      <Link>Assets\Maneuvers\Straight.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\TurnLeft.png">
-      <Link>Assets\Maneuvers\TurnLeft.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\TurnRight.png">
-      <Link>Assets\Maneuvers\TurnRight.png</Link>
-    </Content>
-    <Content Include="..\RoutingSample.Shared\Assets\Maneuvers\UTurn.png">
-      <Link>Assets\Maneuvers\UTurn.png</Link>
-    </Content>
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
@@ -182,8 +121,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <SDKReference Include="ArcGISRuntimeWindowsStore, Version=10.2.2">
-      <Name>ArcGIS Runtime for Windows Store apps %28Beta%29</Name>
+    <SDKReference Include="Esri.ArcGISRuntime, Version=10.2.3">
+      <Name>ArcGIS Runtime for Windows Store apps %28Beta 2%29</Name>
     </SDKReference>
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
@@ -192,6 +131,7 @@
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
+  <Import Project="..\RoutingSample.Shared\RoutingSample.Shared.projitems" Label="Shared" Condition="Exists('..\RoutingSample.Shared\RoutingSample.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
     <SDKReferenceDirectoryRoot>C:\applications\output\winrt_sdk\;$(SDKReferenceDirectoryRoot)</SDKReferenceDirectoryRoot>

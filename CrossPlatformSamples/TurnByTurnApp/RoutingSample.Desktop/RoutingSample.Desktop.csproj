@@ -37,7 +37,7 @@
     <StartupObject>RoutingSample.Desktop.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Esri.ArcGISRuntime, Version=10.2.2.0, Culture=neutral, PublicKeyToken=29c6dd6e8553d944, processorArchitecture=MSIL" />
+    <Reference Include="Esri.ArcGISRuntime, Version=10.2.3.0, Culture=neutral, PublicKeyToken=29c6dd6e8553d944, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -63,24 +63,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="..\RoutingSample.Shared\CommandBinder.cs">
-      <Link>CommandBinder.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Models\ModelBase.cs">
-      <Link>Models\ModelBase.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Models\RouteDataSource.cs">
-      <Link>Models\RouteDataSource.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\Models\RouteService.cs">
-      <Link>Models\RouteService.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\RouteLocationSimulator.cs">
-      <Link>RouteLocationSimulator.cs</Link>
-    </Compile>
-    <Compile Include="..\RoutingSample.Shared\ViewModels\MainPageVM.cs">
-      <Link>ViewModels\MainPageVM.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -158,6 +140,8 @@
       <Link>Assets\Maneuvers\UTurn.png</Link>
     </Resource>
   </ItemGroup>
+  <Import Project="..\RoutingSample.Shared\RoutingSample.Shared.projitems" Label="Shared" Condition="Exists('..\RoutingSample.Shared\RoutingSample.Shared.projitems')" />
+  <Import Project="..\RoutingSample.Shared\RoutingSample.Shared.projitems" Label="Shared" Condition="Exists('..\RoutingSample.Shared\RoutingSample.Shared.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
