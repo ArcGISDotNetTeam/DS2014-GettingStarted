@@ -57,11 +57,12 @@ namespace RoutingSample
 					{
 						//We could just set the InitialExtent instead, but this gives a cool zoom in effect.
 						System.ComponentModel.PropertyChangedEventHandler handler = null;
-						handler = (s, e2) =>
+						handler = async (s, e2) =>
 							{
 								if(e2.PropertyName == "Extent")
 								{
 									mapView.PropertyChanged -= handler;
+									await Task.Delay(500); //Wait a little so map loads before zooming first time (better experience)
 									var __ = mapView.SetViewAsync((Geometry)e.NewValue); 
 								}
 							};
