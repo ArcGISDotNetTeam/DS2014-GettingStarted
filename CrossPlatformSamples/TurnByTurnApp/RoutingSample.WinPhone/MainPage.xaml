@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  	xmlns:esri="using:Esri.ArcGISRuntime.Controls"
 	xmlns:layers="using:Esri.ArcGISRuntime.Layers"
+	xmlns:symbology="using:Esri.ArcGISRuntime.Symbology"
 	xmlns:vm="using:RoutingSample.ViewModels"
 	xmlns:local="using:RoutingSample"
     mc:Ignorable="d"
@@ -53,11 +54,22 @@
 					<layers:ArcGISTiledMapServiceLayer
 					ServiceUri="http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer" />
 
-					<layers:GraphicsLayer GraphicsSource="{Binding Route.Maneuvers, Source={StaticResource viewmodel}}">
+					<layers:GraphicsLayer GraphicsSource="{Binding Route.RouteLines, Source={StaticResource viewmodel}}">
+						<layers:GraphicsLayer.Renderer>
+							<symbology:SimpleRenderer>
+								<symbology:SimpleLineSymbol Width="10" Color="#BE3232FF" />
+							</symbology:SimpleRenderer>
+						</layers:GraphicsLayer.Renderer>
 					</layers:GraphicsLayer>
 
-					<layers:GraphicsLayer GraphicsSource="{Binding Route.RouteLines, Source={StaticResource viewmodel}}">
+					<layers:GraphicsLayer GraphicsSource="{Binding Route.Maneuvers, Source={StaticResource viewmodel}}">
+						<layers:GraphicsLayer.Renderer>
+							<symbology:SimpleRenderer>
+								<symbology:SimpleMarkerSymbol Size="10" Color="Black" />
+							</symbology:SimpleRenderer>
+						</layers:GraphicsLayer.Renderer>
 					</layers:GraphicsLayer>
+
 				</esri:Map>
 			</esri:MapView>
 		</Grid>

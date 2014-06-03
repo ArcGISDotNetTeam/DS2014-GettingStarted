@@ -93,15 +93,13 @@ namespace RoutingSample
 		{
 			var routeLines = new ObservableCollection<Graphic>();
 			var maneuvers = new ObservableCollection<Graphic>();
-			var lineSymbol = new SimpleLineSymbol() { Width = 10, Color = Color.FromArgb(190, 50, 50, 255) };
-			var turnSymbol = new SimpleMarkerSymbol() { Size = 20, Outline = new SimpleLineSymbol() { Color = Color.FromArgb(255, 0, 255, 0), Width = 5 }, Color = Color.FromArgb(180, 255, 255, 255) };
 			foreach (var directions in m_route.Routes)
 			{
-				routeLines.Add(new Graphic() { Geometry = CombineParts(directions.RouteGraphic.Geometry as Polyline), Symbol = lineSymbol });
+				routeLines.Add(new Graphic() { Geometry = CombineParts(directions.RouteGraphic.Geometry as Polyline) });
 				var turns = (from a in directions.RouteDirections select a.Geometry).OfType<Polyline>().Select(line => line.Paths[0][0]);
 				foreach (var m in turns)
 				{
-					maneuvers.Add(new Graphic() { Geometry = new MapPoint(m, SpatialReferences.Wgs84), Symbol = turnSymbol });
+					maneuvers.Add(new Graphic() { Geometry = new MapPoint(m, SpatialReferences.Wgs84) });
 				}
 			}
 			RouteLines = routeLines;

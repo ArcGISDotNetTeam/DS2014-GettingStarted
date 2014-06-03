@@ -13,7 +13,7 @@ namespace RoutingSample.Converters
 					return string.Format("{0:d} days {0:h} h", ts);
 				if (ts.TotalHours > 1)
 					return string.Format("{0:hh}:{0:mm}", ts);
-				if (ts.TotalSeconds > 1)
+				if (ts.TotalSeconds > 0)
 					return string.Format("{0:mm}:{0:ss}", ts);
 				else
 					return ts.ToString();
