@@ -13,5 +13,11 @@ namespace WinAPIDemo.WPF
 	/// </summary>
 	public partial class App : Application
 	{
+		public App()
+		{
+			//TODO: Set your app client id
+			//Esri.ArcGISRuntime.ArcGISRuntimeEnvironment.ClientId = "YOUR CLIENT ID GOES HERE";
+			Esri.ArcGISRuntime.ArcGISRuntimeEnvironment.Initialize();
+		}
 	}
 }

@@ -1,25 +1,23 @@
-﻿using System;
+﻿using Esri.ArcGISRuntime.Portal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+using Windows.UI.Xaml.Controls;
 
 namespace WinAPIDemo.Phone
 {
-	public partial class MapPage : PhoneApplicationPage
+	public partial class MapPage : Page
 	{
 		public MapPage()
 		{
 			InitializeComponent();
 		}
-		protected override void OnNavigatedTo(NavigationEventArgs e)
+		protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			(Resources["mapVM"] as ViewModels.MapVM).PortalItem = MainPage.SelectedPortalItem;
+			(Resources["mapVM"] as ViewModels.MapVM).PortalItem = (ArcGISPortalItem) e.Parameter;
 		}
 	}
 }

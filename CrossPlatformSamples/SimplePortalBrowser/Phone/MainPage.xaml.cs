@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using WinAPIDemo.Phone.Resources;
 using Esri.ArcGISRuntime.Portal;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace WinAPIDemo.Phone
 {
-	public partial class MainPage : PhoneApplicationPage
+	public partial class MainPage : Page
 	{
 		public static ArcGISPortalItem SelectedPortalItem { get; private set; }
 
@@ -21,10 +18,10 @@ namespace WinAPIDemo.Phone
 			InitializeComponent();
 		}
 
-		private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+		private void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
 		{
 			SelectedPortalItem = (sender as FrameworkElement).DataContext as ArcGISPortalItem;
-			NavigationService.Navigate(new Uri("/MapPage.xaml", UriKind.Relative));
+			Frame.Navigate(typeof(MapPage), SelectedPortalItem);
 		}
 	}
 }

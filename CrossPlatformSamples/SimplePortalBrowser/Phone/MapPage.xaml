@@ -1,23 +1,17 @@
-﻿<phone:PhoneApplicationPage
+﻿<Page
     x:Class="WinAPIDemo.Phone.MapPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:WinAPIDemo.ViewModels"
-	xmlns:esri="clr-namespace:Esri.ArcGISRuntime.Controls;assembly=Esri.ArcGISRuntime"
-	xmlns:location="clr-namespace:Esri.ArcGISRuntime.Location;assembly=Esri.ArcGISRuntime"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    mc:Ignorable="d"
-    shell:SystemTray.IsVisible="False">
-	<phone:PhoneApplicationPage.Resources>
+    xmlns:vm="using:WinAPIDemo.ViewModels"
+	xmlns:esri="using:Esri.ArcGISRuntime.Controls"
+	xmlns:location="using:Esri.ArcGISRuntime.Location"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+	<Page.Resources>
 		<vm:MapVM x:Key="mapVM" />
-	</phone:PhoneApplicationPage.Resources>
+	</Page.Resources>
 	<!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent"
 		  DataContext="{StaticResource mapVM}"
@@ -29,7 +23,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,0,0,5">
-            <TextBlock Text="{Binding PortalItem.Title}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="{Binding PortalItem.Title}" Style="{StaticResource BodyTextBlockStyle}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -37,7 +31,8 @@
 
 			<esri:MapView
 				  Map="{Binding WebMapVM.Map}"
-				  MinScale="350000000"
+				  MinScale="{Binding WebMapVM.RecommendedMinScale}"
+				  MaxScale="{Binding WebMapVM.RecommendedMaxScale}"
 				  >
 				<esri:MapView.LocationDisplay>
 					<location:LocationDisplay IsEnabled="True" />
@@ -50,4 +45,4 @@
 		</Grid>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</Page>

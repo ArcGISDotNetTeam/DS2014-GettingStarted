@@ -1,4 +1,4 @@
-﻿<common:LayoutAwarePage
+﻿<Page
     x:Name="pageRoot"
     x:Class="WinAPIDemo.WinStore.MapPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
@@ -17,9 +17,13 @@
 		<vm:MapVM x:Key="mapVM" />
     </Page.Resources>
 
-    <Grid Style="{StaticResource LayoutRootStyle}"
-		  DataContext="{StaticResource mapVM}">
-        <Grid.RowDefinitions>
+    <Grid DataContext="{StaticResource mapVM}">
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition/>
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
+		<Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -27,15 +31,25 @@
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-			<TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PortalItem.Title}" Style="{StaticResource PageHeaderTextStyle}"/>
-        </Grid>
+			<Button x:Name="backButton" Margin="39,59,39,0" Click="GoBack"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+
+			<TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PortalItem.Title}" Style="{StaticResource HeaderTextBlockStyle}"
+					   IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40" />
+		</Grid>
 
 		<esri:MapView Grid.Row="1"
-				  Map="{Binding WebMapVM.Map}" >
+				  Map="{Binding WebMapVM.Map}" 
+				  MinScale="{Binding WebMapVM.RecommendedMinScale}"
+				  MaxScale="{Binding WebMapVM.RecommendedMaxScale}"
+					>
 			<esri:MapView.LocationDisplay>
 				<location:LocationDisplay IsEnabled="True" />
 			</esri:MapView.LocationDisplay>
@@ -53,35 +67,5 @@
 					   FontSize="24" Margin="12" />
 		
 		</StackPanel>
-
-		<VisualStateManager.VisualStateGroups>
-
-            <!-- Visual states reflect the application's view state -->
-            <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
-
-                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
-                <VisualState x:Name="FullScreenPortrait">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-
-                <!-- The back button and title have different styles when snapped -->
-                <VisualState x:Name="Snapped">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
-</common:LayoutAwarePage>
+</Page>

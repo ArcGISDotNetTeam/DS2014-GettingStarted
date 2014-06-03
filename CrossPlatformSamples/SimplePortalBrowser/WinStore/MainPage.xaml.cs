@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WinAPIDemo.WinStore
 {
-	public sealed partial class MainPage : WinAPIDemo.WinStore.Common.LayoutAwarePage
+	public sealed partial class MainPage : Page
 	{
 		public MainPage()
 		{
@@ -27,5 +27,6 @@ namespace WinAPIDemo.WinStore
 			var item = (e.ClickedItem as ArcGISPortalItem);
 			base.Frame.Navigate(typeof(MapPage), item);
 		}
+
 	}
 }

@@ -29,6 +29,9 @@ namespace WinAPIDemo.WinStore
         /// </summary>
         public App()
         {
+			//TODO: Set your app client id
+			//Esri.ArcGISRuntime.ArcGISRuntimeEnvironment.ClientId = "YOUR CLIENT ID GOES HERE";
+			Esri.ArcGISRuntime.ArcGISRuntimeEnvironment.Initialize();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
