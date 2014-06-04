@@ -56,25 +56,17 @@ namespace RoutingSample
 					else //Map not ready, wait till we have an extent and try again
 					{
 						//We could just set the InitialExtent instead, but this gives a cool zoom in effect.
-						System.ComponentModel.PropertyChangedEventHandler handler = null;
+						EventHandler handler = null;
 						handler = async (s, e2) =>
 							{
-								if(e2.PropertyName == "Extent")
-								{
-									mapView.PropertyChanged -= handler;
-									await Task.Delay(500); //Wait a little so map loads before zooming first time (better experience)
-									var __ = mapView.SetViewAsync((Geometry)e.NewValue); 
-								}
+								mapView.ExtentChanged -= handler;
+								await Task.Delay(500); //Wait a little so map loads a little before zooming first time (better experience)
+								var __ = mapView.SetViewAsync((Geometry)e.NewValue); 
 							};
-						mapView.PropertyChanged += handler;
+						mapView.ExtentChanged += handler;
 					}
 				}
 			}
-		}
-
-		static void mapView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
