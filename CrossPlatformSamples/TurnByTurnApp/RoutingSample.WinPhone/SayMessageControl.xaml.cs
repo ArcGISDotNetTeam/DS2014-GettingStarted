@@ -105,18 +105,30 @@ namespace RoutingSample
 			for (int i = 0; i < words.Length; i++)
 			{
 				var word = words[i];
-				switch(word)
+				if (word.StartsWith("I-"))
 				{
-					case "W": word = "west"; break;
-					case "N": word = "west"; break;
-					case "S": word = "south"; break;
-					case "E": word = "east"; break;
-					case "St": word = "Street"; break;
-					case "Ave": word = "Avenue"; break;
-					case "Pl": word = "Place"; break;
-					case "Dr": word = "Drive"; break;
-					default: break;
+					int highwayNumber = -1;
+					if (int.TryParse(word.Substring(2), out highwayNumber))
+						word = "Interstate " + word.Substring(2);
 				}
+				else
+					switch (word)
+					{
+						case "W": word = "west"; break;
+						case "N": word = "north"; break;
+						case "S": word = "south"; break;
+						case "E": word = "east"; break;
+						case "NW": word = "northwest"; break;
+						case "NE": word = "northeast"; break;
+						case "SW": word = "southwest"; break;
+						case "SE": word = "southeast"; break;
+						case "St": word = "Street"; break;
+						case "Ave": word = "Avenue"; break;
+						case "Pl": word = "Place"; break;
+						case "Dr": word = "Drive"; break;
+						case "Pky": word = "Parkway"; break;
+						default: break;
+					}
 				words2[i] = word;
 			}
 
