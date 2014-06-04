@@ -105,6 +105,11 @@ namespace RoutingSample
 			for (int i = 0; i < words.Length; i++)
 			{
 				var word = words[i];
+				if (word[0] == '(')
+					word = word.Substring(1);
+				if(word[word.Length-1] ==')')
+					word = word.Substring(0, word.Length - 1); ;
+
 				if (word.StartsWith("I-"))
 				{
 					int highwayNumber = -1;
@@ -126,7 +131,9 @@ namespace RoutingSample
 						case "Ave": word = "Avenue"; break;
 						case "Pl": word = "Place"; break;
 						case "Dr": word = "Drive"; break;
+						case "Ln": word = "Lane"; break;
 						case "Pky": word = "Parkway"; break;
+						case "Fwy": word = "Freeway"; break;
 						default: break;
 					}
 				words2[i] = word;
