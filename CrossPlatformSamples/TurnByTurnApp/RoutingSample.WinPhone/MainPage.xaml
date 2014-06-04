@@ -46,6 +46,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<esri:MapView LocationDisplay="{Binding LocationDisplay}"
+						  ManipulationMode="All"
 					  local:CommandBinder.RequestView="{Binding ExtentRequested}" >
 				<local:RestoreAutoPanMode.RestoreAutoPanSettings>
 					<local:RestoreAutoPanMode DelayInSeconds="5" PanMode="Navigation" IsEnabled="True" />
