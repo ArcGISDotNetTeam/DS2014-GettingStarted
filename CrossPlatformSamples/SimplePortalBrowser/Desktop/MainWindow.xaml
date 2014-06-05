@@ -12,7 +12,7 @@
 	</Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="160"/>
+			<ColumnDefinition Width="168"/>
 			<ColumnDefinition Width="7*" />
 			<ColumnDefinition Width="725*"/>
 		</Grid.ColumnDefinitions>
@@ -27,8 +27,10 @@
 			<MenuItem Header="File">
 				<MenuItem Header="Exit" Click="Exit_Clicked" />
 			</MenuItem>
+			<!--These are just dummy menus to make it look like a typical desktop app-->
 			<MenuItem Header="Edit" />
 			<MenuItem Header="View" />
+			<MenuItem Header="Tools" />
 			<MenuItem Header="Help" />
 		</Menu>
 		<!--StatusBar-->
@@ -46,7 +48,9 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
-			<ListBox ItemsSource="{Binding Basemaps}" Grid.Row="1" 
+			<TabControl Grid.Row="1" >
+				<TabItem Header="Basemaps">
+			<ListBox ItemsSource="{Binding Basemaps}" 
 					  SelectedItem="{Binding PortalItem, Mode=TwoWay, Source={StaticResource mapVM}}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
@@ -59,16 +63,50 @@
 								<Border.Effect>
 									<DropShadowEffect Direction="-45" BlurRadius="5" ShadowDepth="8" Opacity=".5" />
 								</Border.Effect>
-								<Image Source="{Binding ThumbnailUri}" />
+								<Image Source="{Binding ThumbnailUri}"
+									   HorizontalAlignment="Center"
+									   />
 							</Border>
 							<Border Grid.Row="1" 
 									Padding="5" ToolTipService.ToolTip="{Binding Description}">
-								<TextBlock Text="{Binding Title}" HorizontalAlignment="Center"/>
+								<TextBlock Text="{Binding Title}" HorizontalAlignment="Center"
+										   TextTrimming="CharacterEllipsis"
+												   />
 							</Border>
 						</Grid>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
+				</TabItem>
+				<TabItem Header="Featured">
+					<ListBox ItemsSource="{Binding Featured}" 
+					  SelectedItem="{Binding PortalItem, Mode=TwoWay, Source={StaticResource mapVM}}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Border CornerRadius="4" Padding="3" Background="White" Width="125" BorderBrush="DarkGray" BorderThickness="1" >
+										<Border.Effect>
+											<DropShadowEffect Direction="-45" BlurRadius="5" ShadowDepth="8" Opacity=".5" />
+										</Border.Effect>
+										<Image Source="{Binding ThumbnailUri}" />
+									</Border>
+									<Border Grid.Row="1" 
+									Padding="5" ToolTipService.ToolTip="{Binding Description}">
+										<TextBlock Text="{Binding Title}" HorizontalAlignment="Center"
+												   MaxWidth="120"
+												   TextTrimming="CharacterEllipsis"
+												   />
+									</Border>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</TabItem>
+			</TabControl>
 		</Grid>
 		<!--Map-->
 		<TextBlock Text="{Binding PortalItem.Title, Source={StaticResource mapVM}}"
