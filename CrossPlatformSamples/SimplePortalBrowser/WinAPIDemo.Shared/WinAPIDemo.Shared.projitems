@@ -11,11 +11,10 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Common\BaseValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanNegationConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BoolToVisibility.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BoolToVisibility.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapVM.cs">

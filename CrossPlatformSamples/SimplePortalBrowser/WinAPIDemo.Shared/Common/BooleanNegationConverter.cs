@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WinAPIDemo.Common
+namespace WinAPIDemo.Converters
 {
 	/// <summary>
 	/// Value converter that translates true to false and vice versa.

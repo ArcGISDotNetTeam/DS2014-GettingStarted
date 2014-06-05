@@ -4,12 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	RequestedTheme="Light"
     xmlns:local="using:WinAPIDemo.Phone"
-    xmlns:vm="using:WinAPIDemo.ViewModels"
+    xmlns:conv="using:WinAPIDemo.Converters"
+	xmlns:vm="using:WinAPIDemo.ViewModels"
 	>
 
     <!--Application Resources-->
     <Application.Resources>
-		<vm:BoolToVisibility x:Key="BoolToViz" />
+		<conv:BoolToVisibility x:Key="BoolToViz" />
     </Application.Resources>
 
 

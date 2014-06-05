@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Data;
 using System.Windows.Data;
 #endif
 
-namespace WinAPIDemo.Common
+namespace WinAPIDemo.Converters
 {
 	/// <summary>
 	/// Base converter class for handling converter differences between .NET and Windows Runtime
