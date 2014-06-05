@@ -19,6 +19,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\Roundabout .png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\Stop.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\Straight.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\SharpLeft.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\TurnLeft.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\TurnRight.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Maneuvers\UTurn.png" />

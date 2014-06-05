@@ -16,6 +16,7 @@ namespace WinAPIDemo.Phone
 		public MainPage()
 		{
 			InitializeComponent();
+			NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 		}
 
 		private void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)

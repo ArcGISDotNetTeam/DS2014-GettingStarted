@@ -13,7 +13,7 @@
 	<Page.Resources>
 		<vm:PortalVM x:Key="portalVM" />
 		<DataTemplate x:Key="portalItemTemplate">
-			<Grid Width="150" Height="150" Margin="0,0,12,12" Tapped="Grid_Tapped" >
+			<Grid Width="165" Height="165" Margin="0,0,12,12" Tapped="Grid_Tapped" >
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*" />
 					<RowDefinition Height="Auto" />
@@ -44,7 +44,7 @@
 			<!--Pivot item one-->
 			<PivotItem Header="base maps">
 				<Grid>
-					<GridView ItemsSource="{Binding Basemaps}" 
+					<GridView ItemsSource="{Binding Basemaps}"   
 						  ItemTemplate="{StaticResource portalItemTemplate}"/>
 
 					<ProgressBar IsIndeterminate="True"
